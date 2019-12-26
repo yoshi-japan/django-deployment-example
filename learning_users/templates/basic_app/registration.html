@@ -1,0 +1,25 @@
+{% extends 'basic_app/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+    <div class="container">
+    <div class="jumbotron">
+    {% if registered %}
+        <h2>thank you for registering!</h2>
+    {% else %}
+        <h2>Register Here</h2>
+        <h3>Fill out the form:</h3>
+
+{#        It allows to receive images by enctype="multipart/form-data" #}
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+            <input type="submit" name='' value="Register">
+        </form>
+    {% endif %}
+    </div>
+    </div>
+
+{% endblock %}
+
